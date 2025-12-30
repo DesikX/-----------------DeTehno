@@ -1,0 +1,764 @@
+/* ===========================
+    ГЛОБАЛЬНЫЕ СТИЛИ
+=========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #121212; 
+    color: #E0E0E0; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    height: 8px;
+}
+body::-webkit-scrollbar-track {
+    background: #2D2D2D; /* Темный трек скролла */
+}
+body::-webkit-scrollbar-thumb {
+    background: #ff4d4d; /* Красный скроллбар */
+    border-radius: 5px;
+}
+
+/* ===========================
+    HEADER
+=========================== */
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 100px;
+    gap: 5px;
+    border-bottom: 1px solid #7e0303; 
+    box-shadow: 0px 4px 20px rgba(220, 20, 60, 0.4); 
+    background-color: #1F1F1F; 
+    flex-wrap: wrap;
+}
+
+#logo {
+    font-size: 50px;
+    font-weight: bolder;
+    font-family: 'Orbitron', sans-serif;
+
+    background: linear-gradient(90deg, #d22626, #b20606, #7e0303);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#header input {
+    width: 400px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #555; 
+    padding: 5px 15px;
+    background-color: #2D2D2D; 
+    color: #E0E0E0; 
+}
+
+#search {
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #d22626, #b20606, #7e0303);
+    border: 1px solid #ffbfbf;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: 0.6s;
+    margin-left: 5px;
+}
+
+#search:hover {
+    background: linear-gradient(90deg, #ff4d4d, #ff1a1a, #cc0000);
+    border-color: #df0202d9;
+}
+
+#search-form {
+    margin-left: 120px;
+    display: flex;
+    align-items: center;
+}
+
+#header img {
+    filter: invert(0.1); 
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-size: contain;
+    transition: 0.6s ease;
+}
+
+#header img:hover {
+    transform: scale(1.1); 
+}
+
+#icon-group {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+
+/* ===========================
+    CONTENT + GRID
+=========================== */
+
+#content {
+    margin-top: 30px;
+    padding: 10px 100px;
+}
+
+.parent {
+    display: grid;
+    /* 5 строк для div2, div4(карточки), div3, div5, div6 */
+    grid-template-columns: 250px repeat(4, 1fr);
+    grid-template-rows: auto auto auto auto auto; 
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+
+.div1, .div2, .div3, .div4, .div5, .div6 {
+    border: 1px solid #7e0303;
+    border-radius: 25px;
+    box-shadow: 0 0 12px rgba(220, 20, 60, 0.25); 
+    background-color: #1F1F1F; 
+    padding: 0;
+    overflow: hidden;
+}
+
+
+
+/* ===========================
+    LEFT MENU (div1)
+=========================== */
+
+.div1 {
+    grid-area: 1 / 1 / 4 / 2; /* Растянут на все 5 строк слева */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    border: none;
+}
+
+.div1 h2 {
+    font-size: 24px;
+    margin: 0;
+    font-weight: bolder;
+    background: linear-gradient(90deg, #d22626, #b20606, #7e0303);
+    color: #FFFFFF;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 0;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+#catalog {
+    padding: 10px 0;
+    flex-grow: 1;
+}
+
+.div1 li {
+    list-style: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+    padding: 8px 15px;
+    color: #E0E0E0; 
+    text-align: left;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-bottom: 0; /* Явно сбрасываем отступ для левого меню */
+}
+
+.div1 li:last-child {
+    border-bottom: none;
+}
+
+.div1 li:hover {
+    color: white;
+    border-color: #9b0000;
+        box-shadow: 0px 4px 12px #ff4d4d80;
+    transform: translateY(-2px); 
+    border-color: #ff4d4d;
+}
+
+.div1 img {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    margin-top: auto;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    display: block;
+}
+
+/* ............... */
+
+/* Контейнер для превью */
+#category-preview {
+    position: absolute;
+    left: 350px; /* Ширина вашего меню (250px) + отступ */
+    top: 170px;   /* Отступ от верха .div1 (под заголовком) */
+    width: 1200px;
+    min-height: 400px;
+    background-color: #1F1F1F;
+    border: 1px solid #7e0303;
+    border-radius: 20px;
+    z-index: 1000;
+    padding: 20px;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
+    display: none; 
+    box-sizing: border-box;
+}
+
+/* Когда блок активен */
+#category-preview.active {
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Стили для сетки товаров внутри превью */
+#preview-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    align-items: center;
+}
+#preview-content img {
+    width: 75%;
+    display: block;
+    margin: 0 auto;
+}
+
+#preview-content .card-div5 {
+    justify-content: space-between;
+}
+
+.text-bottom {
+    margin-top: auto;
+    text-align: center;
+}
+
+/* ===========================
+   BIG BANNER BLOCK (div2) - Строка 1
+   =========================== */
+
+.div2 {
+    grid-area: 1 / 2 / 2 / 6;
+    
+    /* Устанавливаем относительное позиционирование, чтобы .banner-content 
+       позиционировался внутри .div2 */
+    position: relative; 
+    
+    background-image: url('./img/fon.png'); 
+    height: 400px; 
+    background-size: cover; 
+    background-position: center; 
+    border-radius: 25px; 
+    overflow: hidden; 
+    display: block; 
+    padding: 0; 
+    border: none;
+    box-sizing: border-box;
+}
+
+
+/* Внутренний контейнер для текста и градиента */
+.div2 .banner-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: flex-start; 
+    padding-left: 5%; 
+    
+ }
+
+/* Стиль для основного текста */
+.div2 .main-text {
+    /* Добавляем max-width, чтобы текст не был слишком длинным на широких экранах */
+    max-width: 50%; 
+    font-size: 4vw; 
+    line-height: 1.1;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: 900; 
+    background: linear-gradient(180deg, #ffdea9 0%, #ffae00 30%, #d49037 60%, #ffbb00 90%, #ffd4a9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    text-shadow: 
+        1px 1px 0 #d43737,
+        2px 2px 0 #d43737,
+        3px 3px 0 #d43737,
+        4px 4px 0 #d43737,
+        5px 5px 5px rgba(0, 0, 0, 0.7); 
+}
+
+/* Стиль для маленькой надписи с датами */
+.div2 .date-text {
+    font-size: 1.2vw;
+    color: #E0E0E0; 
+    margin-top: 15px;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+    .div2 {
+        height: 200px; /* Уменьшаем высоту баннера на мобильных */
+    }
+    
+    .div2 .main-text {
+        font-size: 8vw; 
+        max-width: 80%; /* Увеличиваем ширину текста на мобильных */
+        text-shadow: 
+            1px 1px 0 #D4AF37,
+            2px 2px 0 #D4AF37,
+            3px 3px 3px rgba(0, 0, 0, 0.7);
+    }
+    
+    .div2 .date-text {
+        font-size: 2.5vw;
+        margin-top: 10px;
+    }
+}
+
+/* ===========================
+    GRID BLOCKS (Стеком: 3, 4, 5, 6)
+=========================== */
+
+
+/* Блок 4 (Карточки) - Строка 2 */
+.div4 { 
+    grid-area: 2 / 2 / 3 / 6; 
+    padding: 10px 0; 
+    overflow: hidden;
+    border: none;
+    box-shadow: none;
+    background: none;
+}
+
+.div4 #cards {
+    display: flex;
+    flex-wrap: nowrap; 
+    padding: 20px;
+    overflow-x: auto; 
+}
+
+/* Стилизация скроллбара */
+.div4 #cards::-webkit-scrollbar {
+    height: 8px;
+}
+.div4 #cards::-webkit-scrollbar-track {
+    background: #2D2D2D; /* Темный трек скролла */
+}
+.div4 #cards::-webkit-scrollbar-thumb {
+    background: #ff4d4d; /* Красный скроллбар */
+    border-radius: 10px;
+}
+
+.div4 .card {
+    min-width: 200px; 
+    max-width: 250px; 
+    border: 1px solid #7e0303;
+    border-radius: 15px;
+    box-shadow: 0px 1px 6px rgba(220, 20, 60, 0.2); 
+    background-color: #2D2D2D; /* Темный фон карточки */
+    padding: 15px;
+    text-align: center;
+    transition: 0.4s;
+    margin-right: 20px; 
+    height: auto; 
+    border: none;
+}
+
+.div4 .card:hover {
+    box-shadow: 0px 4px 12px #ff4d4d80;
+    transform: translateY(-2px); 
+    border-color: #ff4d4d;
+}
+
+.div4 .card h3 {
+    font-size: 16px;
+    color: #E0E0E0; /* Светлый текст заголовка */
+    padding-top: 5px;
+}
+
+
+
+.div4 img {
+    /* Если изображения цветные, может потребоваться небольшая коррекция */
+    filter: brightness(1.1);
+    width: 60%; 
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    border-bottom: none; 
+}
+
+/* Блок 3 - Строка 3 */
+.div3 { 
+    grid-area: 3 / 2 / 4 / 6;
+    padding: 20px; 
+    min-height: 100px;
+    max-height: 100px;
+    color: #E0E0E0; /* Светлый текст внутри блока */
+    border: none;
+} 
+
+.div3 img {
+    width: 18%; 
+    height: auto;
+    border-radius: 15px;
+}
+
+.div3 #cards-div3{
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.div3 .card-div3{
+    display: flex;
+    /* justify-content: flex-start; */ /* Необязательно, но может быть полезно */
+    align-items: center;
+    gap: 10px; /* <--- ИСПРАВЛЕНО: Устанавливаем небольшой положительный зазор */
+    padding-left: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.div3 .card-div3:hover {
+    transform: translateY(-2px); 
+    text-shadow: 2px 5px 1px #ff4d4d80;
+}
+
+/* Блок 5 - Строка 4 */
+.div5 { 
+    grid-area: 4 / 1 / 5 / 6; 
+    padding: 20px; 
+    min-height: 100px;
+    color: #E0E0E0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+} 
+/* Настройка горизонтальной прокрутки для карточек в блоке 5 с помощью ИИ */
+#cards-div5{
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    gap: 20px;
+    
+    /* 1. Запрещаем перенос строк, чтобы все карточки были в одном ряду */
+    flex-wrap: nowrap; /* Это значение по умолчанию, но явно его задать не помешает */
+
+    /* 2. Делаем контейнер прокручиваемым по горизонтали */
+    overflow-x: auto; 
+
+    /* 3. Устанавливаем ширину контейнера, чтобы она была меньше общей ширины карточек */
+    width: 100%; /* Убедитесь, что он занимает всю доступную ширину родителя */
+    /* ИЛИ: Задайте фиксированную ширину, например: width: 800px; */
+}
+
+.card-div5 {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px; 
+    max-width: 250px;
+    max-height: 350px; 
+    min-height: 280px;
+    border: 1px solid #7e0303;
+    border-radius: 15px;
+    box-shadow: 0px 1px 6px rgba(220, 20, 60, 0.2); 
+    background-color: #2D2D2D; /* Темный фон карточки */
+    padding: 15px;
+    text-align: center;
+    transition: 0.4s;
+    height: auto; 
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.card-div5:hover {
+    box-shadow: 0px 4px 12px #ff4d4d80;
+    transform: translateY(-2px); 
+    border-color: #ff4d4d;
+}
+
+#cards-div5, .card-div5, img {
+    width: 100%; 
+    height: auto;
+    border-radius: 15px;
+}
+
+.card-div5 p {
+    font-size: 16px;
+    padding-top: 5px;
+}
+
+.div5 #cards-div5::-webkit-scrollbar {
+    height: 8px;
+}
+.div5 #cards-div5::-webkit-scrollbar-track {
+    background: #2D2D2D; /* Темный трек скролла */
+}
+.div5 #cards-div5::-webkit-scrollbar-thumb {
+    background: #ff4d4d; /* Красный скроллбар */
+    border-radius: 10px;
+}
+
+.price {
+    margin-top: auto;       /* Магия: этот отступ заберет все свободное место сверху и прижмет цену вниз */
+    font-weight: bolder;
+    color: #d22626;
+    text-decoration: none;
+    display: block;
+}
+
+/* Блок 6 - Строка 5 */
+.div6 { 
+    grid-area: 5 / 1 / 6 / 6; 
+    padding: 20px; 
+    min-height: 100px;
+    color: #E0E0E0;
+    padding-top: 0;
+    padding-right: 0;
+}
+
+.div6 #cards-div5::-webkit-scrollbar {
+    height: 8px;
+}
+.div6 #cards-div5::-webkit-scrollbar-track {
+    background: #2D2D2D; /* Темный трек скролла */
+}
+.div6 #cards-div5::-webkit-scrollbar-thumb {
+    background: #ff4d4d; /* Красный скроллбар */
+    border-radius: 10px;
+}
+
+#sale {
+    width: 10%; 
+    height: auto;
+    border-radius: 15px;
+
+}
+
+#sale_text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.old-price {
+    text-decoration: line-through;
+    margin-top: auto;       /* Магия: этот отступ заберет все свободное место сверху и прижмет цену вниз */
+    font-weight: bolder;
+    /* font-family: 'Orbitron', sans-serif; */
+    color: #787777;
+    display: block;
+}
+
+
+/* Доп блоки для меню хедера */
+#user_block {
+    position: absolute;
+    background: #171717;
+    z-index: 100;
+    width: 20%;
+    top: 90px;
+    left: 101%;
+    box-shadow: 0px 4px 12px #ff4d4d80;
+    border-radius: 15px;
+    padding: 20px;
+    border-color: #df0202d9;
+    /* display: none; */
+    transition: 1s;
+}
+
+#user_block.active {
+    /* display: block; */
+    left: 80%;
+}
+
+#account {
+    background: linear-gradient(90deg, #d22626, #b20606, #7e0303);
+    border: 1px solid #ffbfbf;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: 0.6s;
+    margin-left: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#account:hover {
+    background: linear-gradient(90deg, #ff4d4d, #ff1a1a, #cc0000);
+    border-color: #df0202d9;
+}
+
+
+
+.kabinet_list {
+    border-bottom: 1px solid transparent; 
+    transition: border-color 0.6s, box-shadow 0.6s;
+    transition: 0.6s;
+}
+
+.kabinet_list:hover {
+    border-bottom: 1px solid #ff4d4d;
+    box-shadow: 0px 8px 16px -6px rgba(255, 77, 77, 0.5);
+    transform: translateY(-2px); 
+}
+
+.kabinet_list {
+    display: flex;
+    align-items: center;
+}
+
+.kabinet_list p {
+    margin-left: 10px;
+    
+}
+
+/* Остальные блоки */
+
+#block_none {
+    position: absolute;
+    background: #171717;
+    z-index: 100;
+    width: 25%;
+    top: 90px;
+    left: 101%;
+    box-shadow: 0px 4px 12px #ff4d4d80;
+    border-radius: 15px;
+    padding: 20px;
+    border-color: #df0202d9;
+    /* display: none; */
+    transition: 1s;
+    padding: 50px;
+}
+
+#block_none.active {
+    display: block; 
+    left: 70%;
+}
+
+#block_none img {
+    width: 75%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#block_none h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: normal;
+    color: #E0E0E0;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* HEART BLOCK */
+
+#heart_block {
+    position: absolute;
+    background: #171717;
+    z-index: 100;
+    width: 25%;
+    top: 90px;
+    left: 101%;
+    box-shadow: 0px 4px 12px #ff4d4d80;
+    border-radius: 15px;
+    padding: 20px;
+    border-color: #df0202d9;
+    /* display: none; */
+    transition: 1s;
+    padding: 50px;
+}
+
+#heart_block.active {
+    display: block; 
+    left: 70%;
+}
+
+#heart_block img {
+    width: 75%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#heart_block h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: normal;
+    color: #E0E0E0;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* CART BLOCK */
+
+#cart_block {
+    position: absolute;
+    background: #171717;
+    z-index: 100;
+    width: 25%;
+    top: 90px;
+    left: 101%;
+    box-shadow: 0px 4px 12px #ff4d4d80;
+    border-radius: 15px;
+    padding: 20px;
+    border-color: #df0202d9;
+    /* display: none; */
+    transition: 1s;
+    padding: 50px;
+}
+
+#cart_block.active {
+    display: block; 
+    left: 70%;
+}
+
+#cart_block img {
+    width: 75%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#cart_block h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: normal;
+    color: #E0E0E0;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

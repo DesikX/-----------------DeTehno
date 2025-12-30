@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeTehno - Інтернет-магазин електроніки</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER -->
+    <header id="header">
+        <h1 id="logo">DeTehno</h1>
+        <form id="search-form" action="/search" method="get">
+            <label for="search-query" style="display: none;">Пошук товару</label>
+            <input type="text" id="search-query" name="query" placeholder="Знайти товар">
+            <button id="search" type="submit">Шукати</button>
+        </form>
+
+        <div id="icon-group">
+            <img id="user_icon" src="./img/user.png" alt="Профіль">
+            <img id="filter" src="./img/filter.png" alt="Порівняння" srcset="">
+            <img id="heart" src="./img/heart.png" alt="Улюблені" srcset="">
+            <img id="cart" src="./img/cart.png" alt="Кошик" srcset="">
+        </div>
+
+        <!-- Выдвигающееся меню блок аккаунта -->
+        <div id="user_block">
+                <button id="account">Увійти або зареєструватися</button>
+                <div id="menu_kabinet">
+                    <div class="kabinet_list">
+                        <img src="./img_account/time.png" alt="Профіль">
+                        <a href="#"><p>Мої замовлення</p></a>
+                    </div><br>
+                    
+                    <div class="kabinet_list">
+                        <img src="./img_account/delivery.png" alt="Налаштування">
+                        <a href="#"><p>Відстежувати замовлення</p></a>
+                    </div><br>
+
+                    <div class="kabinet_list">
+                        <img src="./img_account/favorite.png" alt="Налаштування">
+                        <a href="#"><p>Улюблені</p></a>
+                    </div><br>
+
+                    <div class="kabinet_list">
+                        <img src="./img_account/feedback.png" alt="Налаштування">
+                        <a href="#"><p>Відгуки</p></a>
+                    </div><br>
+
+                    <div class="kabinet_list">
+                        <img src="./img_account/bonus.png" alt="Налаштування">
+                        <a href="#"><p>Знижки та бонуси</p></a>
+                    </div><br>
+
+                    <div class="kabinet_list">
+                        <img src="./img_account/settings.png" alt="Налаштування">
+                        <a href="#"><p>Налаштування</p></a>
+                    </div><br>
+                </div>
+        </div>
+
+        <div id="block_none">
+                <img src="./img/access.png" alt="">
+                <h1>На жаль, ця функція тимчасово недоступна</h1>
+        </div>
+
+        <div id="heart_block">
+                <img src="./img/access.png" alt="">
+                <h1>На жаль, ця функція тимчасово недоступна</h1>
+        </div>
+
+        <div id="cart_block">
+                <img src="./img/access.png" alt="">
+                <h1>На жаль, ця функція тимчасово недоступна</h1>
+        </div>
+
+    </header>
+
+    <!-- ЛЕВОЕ МЕНЮ -->
+    <div id="content">
+        <div class="parent">
+            <div class="div1">
+                <h2>Каталог товарів</h2>
+                <nav id="catalog">
+                    <li data-category="pc">Комп'ютери</li>
+                    <li data-category="phones">Мобільний зв'язок</li>
+                    <li data-category="portable">Портативна техніка</li>
+                    <li data-category="photo_video">Фото та відео техніка</li>
+                    <li data-category="tv">Телевізори та розваги</li>
+                    <li data-category="office">Все для офісу</li>
+                    <li data-category="auto">Авто</li>
+                    <li data-category="gaming">Товари для геймерів</li>
+                    <li data-category="audio">Аудіо</li>
+                    <li data-category="smart">Розумні аксесуари</li>
+                    <li data-category="bloggers">Товари для блогерів</li>
+                    <li data-category="appliances">Побутова техніка</li>
+                    <li data-category="home">Сантехніка та меблі для ванни</li>
+                </nav>
+                    <!-- ДЛЯ JS -->
+                <div id="category-preview" class="preview-hidden">
+                    <div id="preview-content"></div>
+                </div>
+
+                <img src="https://img1.akspic.ru/crops/4/0/1/0/6/160104/160104-novyj_god-rozhdestvo-santa_klaus-ded_moroz-santa_klaus_smeshnoj-3840x2160.jpg" alt="Новорічна акція" srcset="">
+            </div>
+        <!-- БАНЕР -->
+            <div class="div2">
+        <div class="banner-content">
+            <h1 class="main-text">
+                ЗНИЖКИ НА НОВОРІЧНІ СВЯТА
+            </h1>
+            <p class="date-text">
+                діє з 08.12 до 29.12
+            </p>
+        </div>
+            </div>
+
+            <!-- БЛОК 4 -->
+            <div class="div3">
+                <div id="cards-div3">
+                    <div class="card-div3">
+                        <img src="./img/bonus.png" alt="Бонуси за покупку" srcset="">
+                        <p>Бонуси за покупку</p>
+                    </div>
+
+                    <div class="card-div3">
+                        <img src="./img/chip.png" alt="Зібрати ПК" srcset="">
+                        <p>Зібрати ПК</p>
+                    </div> 
+                    
+                    <div class="card-div3">
+                        <img src="./img/setting.png" alt="Сервісний центр" srcset="">
+                        <p>Сервісний центр</p>
+                    </div>
+
+                    <div class="card-div3">
+                        <img src="./img/shield.png" alt="Безпека та гарантії" srcset="">
+                        <p>Безпека та гарантії</p>
+                    </div> 
+                </div>
+            </div>
+
+            <!-- БЛОК 3 -->
+            <div class="div4"> 
+                <div id="cards">
+                    <div class="card">
+                        <img src="./img/SSD.png" alt="SSD диск" srcset="">
+                        <h3>SSD диск, 500 ГБ</h3>
+                    </div>
+
+                    <div class="card">
+                        <img src="./img/clock.png" alt="Смарт годинник" srcset="">
+                        <h3>Смарт годинник, Model X</h3>
+                    </div> 
+                    
+                    <div class="card">
+                        <img src="./img/phone.png" alt="Смартфон" srcset="">
+                        <h3>Смартфон, 256 ГБ</h3>
+                    </div>
+
+                    <div class="card">
+                        <img src="./img/laptop.png" alt="Ноутбук" srcset="">
+                        <h3>Ноутбук, 15 дюймів</h3>
+                    </div>
+                     <div class="card">
+                        <img src="./img/hompower.png" alt="Зарядна станція" srcset="">
+                        <h3>Зарядна станція, Model Y</h3>
+                    </div> 
+                    <div class="card">
+                        <img src="./img/tv.png" alt="Телевізор" srcset="">
+                        <h3>Телевізор, 55 дюймів</h3>
+                    </div> 
+
+                </div>
+            </div>
+            <!-- БЛОК 5 -->
+            <div class="div5"> 
+                <h1 id="logo">Новинки</h1><br>
+                <div id="cards-div5">
+                    <div class="card-div5">
+                        <img src="./img_new/coffemash.png" alt="Кавомашина" srcset="">
+                        <p>Кавомашина</p>
+                        <a class="price"><p>45.331 грн</p></a>
+                    </div>
+
+                    <div class="card-div5">
+                        <img src="./img/hompower.png" alt="Зарядна станція" srcset="">
+                        <p>Зарядна станція</p>
+                        <a class="price"><p>55.834 грн</p></a>
+                    </div> 
+
+                    <div class="card-div5">
+                        <img src="./img_new/pl5.png" alt="Ігрова консоль PlayStation" srcset="">
+                        <p>Ігрова консоль PlayStation</p>
+                        <a class="price"><p>21.462 грн</p></a>
+                    </div>
+
+                    <div class="card-div5">
+                        <img src="./img_new/videocard.png" alt="Відеокарта" srcset="">
+                        <p>Відеокарта Radeon RX Vega 56 8GB</p>
+                        <a class="price"><p>5.362 грн</p></a>
+                    </div>
+ 
+                    <div class="card-div5">
+                        <img src="./img_new/cap.png" alt="Чашка-мішалка з підігрівом" srcset="">
+                        <p>Чашка-мішалка з підігрівом</p>
+                        <a class="price"><p>432 грн</p></a>
+                    </div>
+                    
+                    <div class="card-div5">
+                        <img src="./img_new/acustic.png" alt="Колонки" srcset="">
+                        <p>Колонки</p>
+                        <a class="price"><p>1.135 грн</p></a>
+                    </div>
+                    <div class="card-div5">
+                        <img src="./img_new/pelesos.png" alt="Розумний пилосос" srcset="">
+                        <p>Розумний пилосос</p>
+                        <a class="price"><p>8.383 грн</p></a>
+                    </div>  
+
+                    <div class="card-div5">
+                        <img src="./img_new/videocard.png" alt="Відеокарта" srcset="">
+                        <p>Відеокарта GeForce RTX 5050 8GB</p>
+                        <a class="price"><p>12.748 грн</p></a>
+                    </div>                                      
+                </div>
+            </div>
+
+            <!-- БЛОК 6 -->
+            <div class="div6"> 
+                <div id="sale_text">
+                <h1 id="logo">Акції</h1><br>
+                    <img id="sale" src="./img_sale/tag.png" alt="" srcset="">
+                </div>    
+                    <div id="cards-div5">
+                    <div class="card-div5">
+                        <img src="./img_sale/ushi.png" alt="Бездротові навушники" srcset="">
+                        <p>Бездротові навушники TWS</p>
+                        <p class="old-price">2.800 грн</p>
+                        <a class="price"><p>1.999 грн</p></a>
+                    </div>
+
+                    <div class="card-div5">
+                        <img src="./img_sale/powerbank.png" alt="Power Bank" srcset="">
+                        <p>Power Bank 
+                            10 000 мАч
+                        </p>
+                        <p class="old-price">1.800 грн</p>
+                        <a class="price"><p>1.400 грн</p></a>
+                    </div> 
+
+                    <div class="card-div5">
+                        <img src="./img_sale/smar_house.png" alt="Комплект розумного дому" srcset="">
+                        <p>Комплект "Розумний дім: Стартовий"</p>
+                        <p class="old-price">6.800 грн</p>
+                        <a class="price"><p>4.999 грн</p></a>
+                    </div>
+
+                    <div class="card-div5">
+                        <img src="./img_sale/mose.png" alt="Ігрова миша та килимок" srcset="">
+                        <p>Ігрова миша та килимок</p>
+                        <p class="old-price">2.500 грн</p>
+                        <a class="price"><p>1.850 грн</p></a>
+                    </div>
+ 
+                    <div class="card-div5">
+                        <img src="./img_sale/block.png" alt="Зарядний пристрій USB-C" srcset="">
+                        <p>Зарядний пристрій USB-C</p>
+                        <p class="old-price">300 грн</p>
+                        <a class="price"><p>150 грн</p></a>
+                    </div>
+                    
+                    <div class="card-div5">
+                        <img src="./img_sale/speaker.png" alt="Портативна колонка" srcset="">
+                        <p>Портативна колонка</p>
+                        <p class="old-price">1.400 грн</p>
+                        <a class="price"><p>1.175 грн</p></a>
+                    </div>
+                    <div class="card-div5">
+                        <img src="./img_sale/phone_hand.png" alt="Тримач для смартфона в авто" srcset="">
+                        <p>Тримач для смартфона в авто</p>
+                        <p class="old-price">300 грн</p>
+                        <a class="price"><p>199 грн</p></a>
+                    </div>  
+                    
+                    <div class="card-div5">
+                        <img src="./img_sale/clock.png" alt="Розумний фітнес-браслет" srcset="">
+                        <p>Розумний фітнес-браслет</p>
+                        <p class="old-price">1.800 грн</p>
+                        <a class="price"><p>1.199 грн</p></a>
+                    </div>                                      
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
