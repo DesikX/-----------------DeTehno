@@ -25,40 +25,48 @@
         </div>
 
         <!-- Выдвигающееся меню блок аккаунта -->
-        <div id="user_block">
-                <button id="account">Увійти або зареєструватися</button>
-                <div id="menu_kabinet">
-                    <div class="kabinet_list">
-                        <img src="./img_account/time.png" alt="Профіль">
-                        <a href="#"><p>Мої замовлення</p></a>
-                    </div><br>
-                    
-                    <div class="kabinet_list">
-                        <img src="./img_account/delivery.png" alt="Налаштування">
-                        <a href="#"><p>Відстежувати замовлення</p></a>
-                    </div><br>
+<div id="user_block">
+    <div id="auth_section">
+        <h3 style="color: #ff4d4d; margin-bottom: 10px; font-size: 18px;">Авторизація</h3>
+        <input type="text" id="username_input" placeholder="Ваше ім'я">
+        <input type="password" id="password_input" placeholder="Пароль">
+        <button id="login_btn" style="margin-top: 10px;">Увійти</button>
+    </div>
 
-                    <div class="kabinet_list">
-                        <img src="./img_account/favorite.png" alt="Налаштування">
-                        <a href="#"><p>Улюблені</p></a>
-                    </div><br>
+    <div id="profile_section" style="display: none;">
+        <p style="margin-bottom: 10px;">Вітаємо, <span id="user_name_display" style="color: #ff4d4d;"></span>!</p>
+        <button id="logout_btn">Вийти з аккаунту</button>
+    </div>
 
-                    <div class="kabinet_list">
-                        <img src="./img_account/feedback.png" alt="Налаштування">
-                        <a href="#"><p>Відгуки</p></a>
-                    </div><br>
+    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #333;">
 
-                    <div class="kabinet_list">
-                        <img src="./img_account/bonus.png" alt="Налаштування">
-                        <a href="#"><p>Знижки та бонуси</p></a>
-                    </div><br>
-
-                    <div class="kabinet_list">
-                        <img src="./img_account/settings.png" alt="Налаштування">
-                        <a href="#"><p>Налаштування</p></a>
-                    </div><br>
-                </div>
-        </div>
+    <div id="menu_kabinet">
+        <div class="kabinet_list">
+            <img src="./img_account/time.png" alt="Профіль">
+            <a href="#"><p>Мої замовлення</p></a>
+        </div><br>
+        <div class="kabinet_list">
+            <img src="./img_account/delivery.png" alt="Налаштування">
+            <a href="#"><p>Відстежувати замовлення</p></a>
+        </div><br>
+        <div class="kabinet_list">
+            <img src="./img_account/favorite.png" alt="Налаштування">
+            <a href="#"><p>Улюблені</p></a>
+        </div><br>
+        <div class="kabinet_list">
+            <img src="./img_account/feedback.png" alt="Налаштування">
+            <a href="#"><p>Відгуки</p></a>
+        </div><br>
+        <div class="kabinet_list">
+            <img src="./img_account/bonus.png" alt="Налаштування">
+            <a href="#"><p>Знижки та бонуси</p></a>
+        </div><br>
+        <div class="kabinet_list">
+            <img src="./img_account/settings.png" alt="Налаштування">
+            <a href="#"><p>Налаштування</p></a>
+        </div><br>
+    </div>
+</div>
 
         <div id="block_none">
                 <img src="./img/access.png" alt="">

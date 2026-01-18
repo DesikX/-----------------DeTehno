@@ -304,5 +304,60 @@ searchInput.addEventListener('input', (e) => {
     }
 });
 
+
+
+// Функція авторизації/реєстрації
+
+const loginBtn = document.getElementById('login_btn');
+const logoutBtn = document.getElementById('logout_btn');
+const usernameInput = document.getElementById('username_input');
+const passwordInput = document.getElementById('password_input');
+const authSection = document.getElementById('auth_section');
+const profileSection = document.getElementById('profile_section');
+const userNameDisplay = document.getElementById('user_name_display');
+
+function updateUI() {
+    const savedName = localStorage.getItem('userName');
+    if (savedName) {
+        authSection.style.display = 'none';
+        profileSection.style.display = 'block';
+        userNameDisplay.textContent = savedName;
+    } else {
+        authSection.style.display = 'block';
+        profileSection.style.display = 'none';
+    }
+}
+
+loginBtn.addEventListener('click', () => {
+    const name = usernameInput.value.trim();
+    const pass = passwordInput.value.trim();
+
+    // Пытаемся получить пароль, который уже сохранен для этого имени
+    const savedPass = localStorage.getItem(`pass_${name}`);
+
+    if (!savedPass) {
+        // РЕЖИМ РЕГИСТРАЦИИ: если такого пользователя еще нет
+        localStorage.setItem(`pass_${name}`, pass);
+        localStorage.setItem('userName', name);
+        alert("Ви успішно зареєстровані та увійшли!");
+        updateUI();
+    } else {
+        // РЕЖИМ ВХОДА: если пользователь уже есть, проверяем пароль
+        if (savedPass === pass) {
+            localStorage.setItem('userName', name);
+            updateUI();
+        } else {
+            alert("Невірний пароль для цього користувача!");
+        }
+    }
+});
+
+logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('userName');
+    updateUI();
+});
+
+updateUI();
+
 alert("Цей сайт є навчальним проєктом і не здійснює реальних продажів товарів.");
 alert("Також деякі функції сайту можуть бути недоступні або працювати некоректно.");
