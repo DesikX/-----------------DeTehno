@@ -144,19 +144,14 @@ const previewContent = document.getElementById('preview-content'); // Конте
 
 // 3. ЛОГИКА НАВЕДЕНИЯ (MOUSE ENTER)
 menuItems.forEach(item => {
-    item.addEventListener('mouseenter', () => { // Исправлено: функция теперь внутри обработчика
+    item.addEventListener('mouseenter', () => { 
 
-        const cat = item.dataset.category; // Получаем значение data-category
-        const products = productData[cat]; // Получаем массив товаров
+        const cat = item.dataset.category; 
+        const products = productData[cat]; 
 
           if (products) {
-              /*
-                Метод .map() берет каждый товар из массива и превращает его в кусочек HTML-кода.
-                .join('') склеивает эти кусочки в одну длинную строку.
-                innerHTML вставляет эту строку прямо в блок на сайте.
-               */
+    
 
-              // ИСПРАВЛЕНО: внутри map мы назвали переменную 'prod', значит используем ${prod.img} и т.д.
               const imgStyle = cat === 'auto' ? 'style="width: 65%; display: block; margin: 0 auto;"' : '';
               previewContent.innerHTML = products.map(prod => `
                 <div class="card-div5" style="min-width: 150px;"> 
@@ -168,14 +163,14 @@ menuItems.forEach(item => {
                 </div>
                 `).join('');
 
-                previewBox.classList.add('active'); // Используем везде previewBox (как в поиске элементов)
+                previewBox.classList.add('active'); 
           }
     });
 });
 
 // 4. ЛОГИКА УХОДА МЫШКИ (MOUSE LEAVE)
 const hidePreview = (e) => {
-    // Проверяем, куда ушел курсор. e.relatedTarget — это элемент, на который перешла мышка.
+    
     const movedToPreview = previewBox.contains(e.relatedTarget);
     const movedToMenuItem = Array.from(menuItems).some(item => item.contains(e.relatedTarget));
 
@@ -240,6 +235,72 @@ document.getElementById('cart').addEventListener('click', () => {
 document.addEventListener('click', (e) => {
     if (!cartBlock.contains(e.target) && e.target.id !== 'cart') {
         cartBlock.classList.remove('active');
+    }
+});
+
+
+// ПОИСК ТОВАРОВ
+
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-query');
+const mainContent = document.querySelector('.parent'); // Сюда выведем результаты
+
+// Функция для самого поиска
+function performSearch(query) {
+    const results = [];
+    const lowerQuery = query.toLowerCase().trim();
+
+    if (lowerQuery === "") return;
+
+    // Пробегаем по всем категориям в productData
+    for (let category in productData) {
+        productData[category].forEach(product => {
+            if (product.name.toLowerCase().includes(lowerQuery)) {
+                results.push(product);
+            }
+        });
+    }
+
+    renderSearchResults(results, query);
+}
+
+// Функция для отрисовки результатов вместо главного баннера и новинок
+function renderSearchResults(results, query) {
+   
+    const resultsContainer = document.querySelector('.div5');
+    
+    if (results.length === 0) {
+        resultsContainer.innerHTML = `<h1 id="logo">Нічого не знайдено за запитом "${query}"</h1>`;
+        return;
+    }
+
+    resultsContainer.innerHTML = `
+        <h1 id="logo">Результати пошуку: ${query}</h1><br>
+        <div id="cards-div5" style="flex-wrap: wrap; overflow: visible;">
+            ${results.map(prod => `
+                <div class="card-div5"> 
+                    <img src="${prod.img}" alt="${prod.name}"> 
+                    <p>${prod.name}</p>
+                    <a class="price"><p>${prod.price}</p></a>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    // Скроллим пользователя к результатам
+    resultsContainer.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Слушатель на кнопку "Шукати"
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Чтобы страница не перезагружалась
+    performSearch(searchInput.value);
+});
+
+// (Опционально) Поиск "на лету" при вводе текста
+searchInput.addEventListener('input', (e) => {
+    if (e.target.value.length > 2) { // Начинаем искать от 3-х символов
+        performSearch(e.target.value);
     }
 });
 
