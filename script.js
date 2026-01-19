@@ -365,3 +365,152 @@ updateUI();
 
 alert("Цей сайт є навчальним проєктом і не здійснює реальних продажів товарів.");
 alert("Також деякі функції сайту можуть бути недоступні або працювати некоректно.");
+
+// =========================================================
+// ЛОГИКА КОРЗИНЫ И ИЗБРАННОГО
+// =========================================================
+
+// 1. Создаем массивы
+let cart = JSON.parse(localStorage.getItem('user_cart')) || [];
+let favorites = JSON.parse(localStorage.getItem('user_favorites')) || [];
+
+// 2. Функция добавления
+function addToStorage(id, name, price, img, type) {
+    const item = { id, name, price, img };
+    
+    if (type === 'cart') {
+        cart.push(item);
+        localStorage.setItem('user_cart', JSON.stringify(cart));
+        renderCart();
+    } else {
+        // Проверка дубликатов в избранном
+        if (!favorites.some(f => f.name === name)) {
+            favorites.push(item);
+            localStorage.setItem('user_favorites', JSON.stringify(favorites));
+            renderFavorites();
+        }
+    }
+}
+
+// 3. Парсинг цены (превращаем "1 200 грн" в число 1200)
+function parsePrice(priceString) {
+    if (!priceString) return 0;
+    // Превращаем в строку, убираем всё кроме цифр, превращаем в число
+    return parseInt(String(priceString).replace(/\D/g, '')) || 0;
+}
+
+// 4. Подсчет общей суммы
+function updateTotals() {
+    // Считаем Корзину
+    const cartTotal = cart.reduce((sum, item) => sum + parsePrice(item.price), 0);
+    const cartTotalElement = document.getElementById('total_cart_price');
+    
+    if (cartTotalElement) {
+        cartTotalElement.textContent = cartTotal.toLocaleString('uk-UA') + ' грн';
+    }
+
+    // Считаем Избранное
+    const heartTotal = favorites.reduce((sum, item) => sum + parsePrice(item.price), 0);
+    const heartTotalElement = document.getElementById('total_heart_price');
+    
+    if (heartTotalElement) {
+        heartTotalElement.textContent = heartTotal.toLocaleString('uk-UA') + ' грн';
+    }
+}
+
+// 5. Рендер КОРЗИНЫ
+function renderCart() {
+    const list = document.getElementById('cart_items_list');
+    const totalBlock = document.getElementById('cart_total');
+    
+    // Если список пуст
+    if (cart.length === 0) {
+        list.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Ваш кошик порожній</p>';
+        if(totalBlock) totalBlock.style.display = 'none';
+    } else {
+        // Если есть товары
+        if(totalBlock) totalBlock.style.display = 'block';
+        
+        list.innerHTML = cart.map((item, index) => `
+            <div class="modal-item" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px;">
+                <img src="${item.img}" style="width: 50px; height: 50px; object-fit: contain; background: #222; border-radius: 4px;">
+                <div style="flex-grow: 1;">
+                    <p style="font-size: 13px; margin: 0; color: #fff;">${item.name}</p>
+                    <p style="color: #ff4d4d; font-weight: bold; margin: 0;">${item.price}</p>
+                </div>
+                <button onclick="removeFromCart(event, ${index})" style="background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 20px; padding: 0 10px;">&times;</button>
+            </div>
+        `).join('');
+    }
+    updateTotals();
+}
+
+// 6. Рендер ИЗБРАННОГО
+function renderFavorites() {
+    const list = document.getElementById('heart_items_list');
+    const totalBlock = document.getElementById('heart_total');
+    
+    if (favorites.length === 0) {
+        list.innerHTML = '<p style="text-align: center; color: #888; padding: 20px;">Список порожній</p>';
+        if(totalBlock) totalBlock.style.display = 'none';
+    } else {
+        if(totalBlock) totalBlock.style.display = 'block';
+        
+        list.innerHTML = favorites.map((item, index) => `
+            <div class="modal-item" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px;">
+                <img src="${item.img}" style="width: 50px; height: 50px; object-fit: contain; background: #222; border-radius: 4px;">
+                <div style="flex-grow: 1;">
+                    <p style="font-size: 13px; margin: 0; color: #fff;">${item.name}</p>
+                    <p style="color: #ff4d4d; font-weight: bold; margin: 0;">${item.price}</p>
+                </div>
+                <button onclick="removeFromFavorites(event, ${index})" style="background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 20px; padding: 0 10px;">&times;</button>
+            </div>
+        `).join('');
+    }
+    updateTotals();
+}
+
+// 7. Функции УДАЛЕНИЯ (с остановкой всплытия события)
+window.removeFromCart = (e, index) => {
+    e.stopPropagation(); // ОСТАНАВЛИВАЕТ ЗАКРЫТИЕ ОКНА
+    cart.splice(index, 1);
+    localStorage.setItem('user_cart', JSON.stringify(cart));
+    renderCart();
+};
+
+window.removeFromFavorites = (e, index) => {
+    e.stopPropagation(); // ОСТАНАВЛИВАЕТ ЗАКРЫТИЕ ОКНА
+    favorites.splice(index, 1);
+    localStorage.setItem('user_favorites', JSON.stringify(favorites));
+    renderFavorites();
+};
+
+// 8. Глобальный слушатель кликов (Добавление товаров)
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-cart') || e.target.classList.contains('btn-heart')) {
+        const card = e.target.closest('.card-div5') || e.target.closest('.card');
+        
+        if (card) {
+            // Ищем элементы внутри карточки (учитываем разную структуру)
+            const nameEl = card.querySelector('p, h3');
+            const priceEl = card.querySelector('.price p, .price, p:nth-of-type(2)'); 
+            const imgEl = card.querySelector('img');
+
+            if (nameEl && priceEl && imgEl) {
+                const name = nameEl.innerText;
+                const price = priceEl.innerText; // Берем innerText, чтобы получить "45 000 грн"
+                const img = imgEl.src;
+                const type = e.target.classList.contains('btn-cart') ? 'cart' : 'heart';
+                
+                addToStorage(Date.now(), name, price, img, type);
+
+                // Анимация нажатия
+                e.target.style.transform = 'scale(0.9)';
+                setTimeout(() => e.target.style.transform = 'scale(1)', 100);
+            }
+        }
+    }
+});
+
+renderCart();
+renderFavorites();

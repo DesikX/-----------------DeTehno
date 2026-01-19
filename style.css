@@ -851,3 +851,25 @@ body::-webkit-scrollbar-thumb {
     background: rgba(255, 77, 77, 0.1);
     transform: scale(1.05);
 }
+
+
+ /* Стили для модального окна корзины и избранного  */
+
+#cart_block, #heart_block {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.modal-item img {
+    border-radius: 5px;
+    background: #222;
+}
+
+#cart_items_list::-webkit-scrollbar {
+    width: 5px;
+}
+
+#cart_items_list::-webkit-scrollbar-thumb {
+    background: #7e0303;
+    border-radius: 10px;
+}
