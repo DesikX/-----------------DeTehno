@@ -153,14 +153,18 @@ menuItems.forEach(item => {
     
 
               const imgStyle = cat === 'auto' ? 'style="width: 65%; display: block; margin: 0 auto;"' : '';
-              previewContent.innerHTML = products.map(prod => `
-                <div class="card-div5" style="min-width: 150px;"> 
-                    <img src="${prod.img}" alt="${prod.name}" ${imgStyle}> 
-                    <div class="text-bottom">
-                        <p>${prod.name}</p>
-                        <span class="price">${prod.price}</span>
+                previewContent.innerHTML = products.map(prod => `
+                    <div class="card-div5" style="min-width: 150px;"> 
+                        <img src="${prod.img}" alt="${prod.name}" ${imgStyle}> 
+                        <div class="text-bottom">
+                            <p>${prod.name}</p>
+                            <span class="price">${prod.price}</span>
+                            <div class="card-actions">
+                                <button class="btn-cart">У кошик</button>
+                                <button class="btn-heart">❤</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
                 `).join('');
 
                 previewBox.classList.add('active'); 

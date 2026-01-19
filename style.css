@@ -804,3 +804,50 @@ body::-webkit-scrollbar-thumb {
     filter: brightness(1.2);
     box-shadow: 0px 0px 10px #ff4d4d;
 }
+
+
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+
+.btn-cart, .btn-heart {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #7e0303;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.btn-cart {
+    background: linear-gradient(90deg, #d22626, #7e0303);
+    color: white;
+    flex: 2; 
+}
+
+.btn-cart:hover {
+    background: linear-gradient(90deg, #ff4d4d, #cc0000);
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
+}
+
+
+.btn-heart {
+    background: transparent;
+    color: #ff4d4d;
+    flex: 1;
+}
+
+.btn-heart:hover {
+    background: rgba(255, 77, 77, 0.1);
+    transform: scale(1.05);
+}
